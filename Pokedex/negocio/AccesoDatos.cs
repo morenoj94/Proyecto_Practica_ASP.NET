@@ -37,6 +37,13 @@ namespace negocio
             comando.CommandText = consulta;
         }
 
+        //Creamos un metodo para setear el procedimiento almacenado en la base de datos
+        public void setearProcedimiento(string sp) 
+        {
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.CommandText = sp;
+        }
+
         // Se abre la coneccion y se ejecuta una lectura que solo sirve para leer la BBDD aunque suene redundante
         public void ejecutarLectura() 
         {

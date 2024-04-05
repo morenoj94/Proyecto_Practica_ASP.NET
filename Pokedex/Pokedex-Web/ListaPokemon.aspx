@@ -3,5 +3,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Lista de pokemons</h1>
-    <h4>Esta es la lista de pokemons</h4>
+    <asp:GridView ID="dgvListaPokemon" runat="server" AutoGenerateColumns="false">
+        <Columns>
+            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+            <asp:BoundField HeaderText="Tipo" DataField="Tipo.Descripcion" />
+        </Columns>
+    </asp:GridView>
+    
 </asp:Content>
