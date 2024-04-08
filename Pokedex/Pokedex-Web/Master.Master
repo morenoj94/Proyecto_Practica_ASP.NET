@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </nav>
-
+            <%-- Div container para el contenido dentro de la master --%>
             <div class="container">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
