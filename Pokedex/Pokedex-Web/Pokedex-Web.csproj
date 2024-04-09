@@ -80,6 +80,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Formulario.aspx" />
     <Content Include="ListaPokemon.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -113,6 +114,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Formulario.aspx.cs">
+      <DependentUpon>Formulario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulario.aspx.designer.cs">
+      <DependentUpon>Formulario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListaPokemon.aspx.cs">
       <DependentUpon>ListaPokemon.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
