@@ -60,7 +60,7 @@ namespace Pokedex_Web
                 aux.Debilidad = new Elemento();
                 aux.Debilidad.Id = int.Parse(ddlDebilidad.SelectedValue);
 
-                negocio.agregarPokemon(aux);
+                negocio.agregarConSP(aux);
                 Response.Redirect("ListaPokemon.aspx", false);
             }
             catch (Exception ex)

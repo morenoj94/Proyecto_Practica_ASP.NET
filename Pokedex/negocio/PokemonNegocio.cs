@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using dominio;
 using System.ComponentModel;
+using System.Security.Cryptography;
+using System.Security.Policy;
 
 namespace negocio
 {
@@ -191,6 +193,37 @@ namespace negocio
 
 
         }
+
+        public void agregarConSP(Pokemon poke)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                
+                datos.setearProcedimiento("storeCrearPokemon");
+                datos.setearParametros("@numero", poke.Numero);
+                datos.setearParametros("@nombre", poke.Nombre);
+                datos.setearParametros("@desc", poke.Descripcion);
+                datos.setearParametros("@url", poke.UrlImagen);               
+                datos.setearParametros("@idTipo", poke.Tipo.Id);
+                datos.setearParametros("@idDebilidad", poke.Debilidad.Id);
+                //datos.setearParametros("@idEvolucion", null);
+                datos.ejecutarAccion();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConeccion();
+            }
+
+        }
+
 
         public List<Pokemon> filtrar(string campo, string criterio, string filtro)
         {
