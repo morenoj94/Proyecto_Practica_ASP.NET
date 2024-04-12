@@ -17,6 +17,7 @@ namespace Pokedex_Web
 
             try
             {
+                //carga inicial
                 if (!IsPostBack)
                 {
                     ElementoNegocio negocio = new ElementoNegocio();
@@ -33,6 +34,30 @@ namespace Pokedex_Web
                     ddlDebilidad.DataBind();
 
                 }
+
+                //carga si viene un id por url
+               
+                if (!(Request.QueryString["id"] == null) && !IsPostBack)// agregamos la coondicion si es postback
+                {
+                    int id = int.Parse(Request.QueryString["id"]);
+                    PokemonNegocio negocio = new PokemonNegocio();
+                    //List<Pokemon> lista = negocio.listarConSP();
+                    // no creo la variable lista y solo creo la variable pokemon, igual llamo al metodo listar pero en la misma linea de codigo hago el filtro con la expresion lamda
+                    Pokemon seleccionado = (negocio.listarConSP()).Find(x => x.Id == id);
+
+                    txtId.Text = seleccionado.Id.ToString();
+                    txtNombre.Text = seleccionado.Nombre;
+                    txtNumero.Text = seleccionado.Numero.ToString();
+                    txtDescripcion.Text = seleccionado.Descripcion;
+                    txtUrlImagen.Text = seleccionado.UrlImagen;
+                    imgPokemon.ImageUrl = txtUrlImagen.Text;
+
+                    ddlTipo.SelectedValue = seleccionado.Tipo.Id.ToString();
+                    ddlDebilidad.SelectedValue = seleccionado.Debilidad.Id.ToString();
+
+                    btnAceptar.Text = "Modificar";
+
+                }
             }
             catch (Exception ex)
             {
@@ -41,7 +66,6 @@ namespace Pokedex_Web
                 throw;
                 //redireccion a pantalla de error
             }
-
 
         }
 
@@ -60,8 +84,19 @@ namespace Pokedex_Web
                 aux.Debilidad = new Elemento();
                 aux.Debilidad.Id = int.Parse(ddlDebilidad.SelectedValue);
 
-                negocio.agregarConSP(aux);
+                if (Request.QueryString["id"] != null)
+                {
+                    aux.Id = int.Parse(txtId.Text); // agregamos el id en el poke aux para poder modificar en base al id
+                    negocio.modificarPokemonConSP(aux);
+                }
+                else 
+                {
+                    negocio.agregarConSP(aux);
+                }
                 Response.Redirect("ListaPokemon.aspx", false);
+
+
+
             }
             catch (Exception ex)
             {
