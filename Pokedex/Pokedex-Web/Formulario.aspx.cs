@@ -127,10 +127,15 @@ namespace Pokedex_Web
         {
             try
             {
+                PokemonNegocio negocio = new PokemonNegocio();
                 if (cbxConfirmareliminar.Checked)
                 {
-                    PokemonNegocio negocio = new PokemonNegocio();
                     negocio.eliminarPokemon(int.Parse(txtId.Text));
+                    Response.Redirect("ListaPokemon.aspx", false);
+                }
+                else
+                {
+                    negocio.eliminarLogico(int.Parse(txtId.Text));
                     Response.Redirect("ListaPokemon.aspx", false);
                 }
             }

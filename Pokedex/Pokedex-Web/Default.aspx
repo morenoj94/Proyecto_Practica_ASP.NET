@@ -32,7 +32,9 @@
             <ItemTemplate>
                 <div class="col">
                     <div class="card h-100">
-                        <img src="<%#Eval("UrlImagen") %>" class="card-img-top" alt="...">
+                        <a href="Formulario.aspx?id=<%#Eval("Id") %>">
+                        <img src="<%#Eval("UrlImagen") %>"  class="card-img-top" alt="...">
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title"><%#Eval("Nombre")%></h5>
                             <p class="card-text"><%#Eval("Descripcion")%></p>

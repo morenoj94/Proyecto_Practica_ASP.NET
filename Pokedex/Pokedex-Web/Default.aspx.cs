@@ -26,7 +26,7 @@ namespace Pokedex_Web
 
         protected void btnEjemplo_Click(object sender, EventArgs e)
         {
-            string var = ((Button)sender).CommandArgument;
+            Response.Redirect("Formulario.aspx?id=3", false);
 
         }
     }
