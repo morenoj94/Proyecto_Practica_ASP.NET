@@ -95,7 +95,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update POKEMONS set Numero = @Numero, Nombre = @Nombre, Descripcion = @Descripcion, UrlImagen = @UrlImagen, IdTipo = @IdTipo, IdDebilidad = @IdDebilidad ");
+                datos.setearConsulta("update POKEMONS set Numero = @Numero, Nombre = @Nombre, Descripcion = @Descripcion, UrlImagen = @UrlImagen, IdTipo = @IdTipo, IdDebilidad = @IdDebilidad where Id = @Id");
                 datos.setearParametros("@Id", poke.Id);
                 datos.setearParametros("@Numero", poke.Numero);
                 datos.setearParametros("@Nombre", poke.Nombre);
@@ -149,8 +149,8 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("delete from POKEMONS where id = @id");
-                datos.setearParametros("@id", id);
+                datos.setearConsulta("delete from POKEMONS where Id = @Id");
+                datos.setearParametros("@Id", id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

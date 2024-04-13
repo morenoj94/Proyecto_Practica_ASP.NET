@@ -32,7 +32,6 @@
                 </asp:DropDownList>
             </div>
             <br />
-            <asp:Button ID="btnAceptar" CssClass="btn btn-dark" Text="Aceptar" OnClick="btnAceptar_Click" runat="server" />
         </div>
 
         <div class="col-6">
@@ -50,12 +49,29 @@
                     </div>
                     <asp:Image ImageUrl="https://i0.wp.com/usma.ac.pa/wp-content/uploads/2020/02/placeholder.png?ssl=1"
                         ID="imgPokemon" runat="server" Width="60%" />
-
                 </ContentTemplate>
             </asp:UpdatePanel>
 
 
 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+                    <asp:Button ID="btnAceptar" CssClass="btn btn-dark" Text="Aceptar" OnClick="btnAceptar_Click" runat="server" />
+                    <asp:Button ID="btnEliminar" CssClass="btn btn-danger" Text="Eliminar" OnClick="btnEliminar_Click" runat="server" />
+                    <%if (ConfirmarEliminar)
+                        {%>
+                    <div>
+                        <asp:CheckBox ID="cbxConfirmareliminar" Text="Deseas eliminar?" runat="server" />
+                        <asp:Button ID="btnConfirmarEliminar" CssClass="btn btn-outline-danger" Text="Confirmar" OnClick="btnConfirmarEliminar_Click" runat="server" />
+                    </div>
+
+                    <%} %>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
     </div>
 </asp:Content>

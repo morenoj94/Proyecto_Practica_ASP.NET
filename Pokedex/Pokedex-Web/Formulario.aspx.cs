@@ -11,9 +11,12 @@ namespace Pokedex_Web
 {
     public partial class Formulario : System.Web.UI.Page
     {
+        public bool ConfirmarEliminar { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             txtId.Enabled = false;
+            ConfirmarEliminar = false;
+
 
             try
             {
@@ -36,7 +39,7 @@ namespace Pokedex_Web
                 }
 
                 //carga si viene un id por url
-               
+
                 if (!(Request.QueryString["id"] == null) && !IsPostBack)// agregamos la coondicion si es postback
                 {
                     int id = int.Parse(Request.QueryString["id"]);
@@ -89,7 +92,7 @@ namespace Pokedex_Web
                     aux.Id = int.Parse(txtId.Text); // agregamos el id en el poke aux para poder modificar en base al id
                     negocio.modificarPokemonConSP(aux);
                 }
-                else 
+                else
                 {
                     negocio.agregarConSP(aux);
                 }
@@ -110,6 +113,33 @@ namespace Pokedex_Web
         protected void txtUrlImagen_TextChanged(object sender, EventArgs e)
         {
             imgPokemon.ImageUrl = txtUrlImagen.Text;
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (Request.QueryString["id"] != null)
+            {
+                ConfirmarEliminar = true;
+            }
+        }
+
+        protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbxConfirmareliminar.Checked)
+                {
+                    PokemonNegocio negocio = new PokemonNegocio();
+                    negocio.eliminarPokemon(int.Parse(txtId.Text));
+                    Response.Redirect("ListaPokemon.aspx", false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw;
+                //redireccion a pantalla de error
+            }
         }
     }
 }
