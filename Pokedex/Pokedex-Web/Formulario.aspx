@@ -6,6 +6,39 @@
     <asp:ScriptManager runat="server" />
     <%-- El update panel necesita un scrip manager para funcionar --%>
     <br />
+    <%-- Botones --%>
+    <div class="row">
+        <div class="col-6">
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+                    <asp:Button ID="btnAceptar" CssClass="btn btn-dark" Text="Aceptar" OnClick="btnAceptar_Click" runat="server" />
+                    <%if (Activo==true)
+                       {%>
+                    <asp:Button ID="btnEliminar" CssClass="btn btn-danger" Text="Eliminar" OnClick="btnEliminar_Click" runat="server" />
+                    <%} %>
+                    <%else if(Activo==false)
+                      {%>
+                    <asp:Button ID="btnActivar" CssClass="btn btn-success" Text="Activar" OnClick="btnActivar_Click" runat="server" />
+                    <%} %>
+
+                    <%if (ConfirmarEliminar)
+                        {%>
+                    <div>
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>
+                                <asp:CheckBox ID="cbxConfirmareliminar" Text=" Deseas eliminarlo definitivamente?" OnCheckedChanged="cbxConfirmareliminar_CheckedChanged" AutoPostBack="true" runat="server" />
+                                <asp:Button ID="btnConfirmarEliminar" CssClass="btn btn-outline-warning" Text="Inactivar" OnClick="btnConfirmarEliminar_Click" runat="server" />
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+
+                    <%} %>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+    </div>
+    <br />
+    <%-- Formulario --%>
     <div class="row">
         <div class="col-6">
 
@@ -51,27 +84,8 @@
                         ID="imgPokemon" runat="server" Width="60%" />
                 </ContentTemplate>
             </asp:UpdatePanel>
-
-
-
         </div>
     </div>
-    <div class="row">
-        <div class="col-6">
-            <asp:UpdatePanel runat="server">
-                <ContentTemplate>
-                    <asp:Button ID="btnAceptar" CssClass="btn btn-dark" Text="Aceptar" OnClick="btnAceptar_Click" runat="server" />
-                    <asp:Button ID="btnEliminar" CssClass="btn btn-danger" Text="Eliminar" OnClick="btnEliminar_Click" runat="server" />
-                    <%if (ConfirmarEliminar)
-                        {%>
-                    <div>
-                        <asp:CheckBox ID="cbxConfirmareliminar" Text="Deseas eliminar?" runat="server" />
-                        <asp:Button ID="btnConfirmarEliminar" CssClass="btn btn-outline-danger" Text="Confirmar" OnClick="btnConfirmarEliminar_Click" runat="server" />
-                    </div>
 
-                    <%} %>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
-    </div>
+
 </asp:Content>

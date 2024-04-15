@@ -184,6 +184,27 @@ namespace negocio
             }
         }
 
+        public void activarPokemon(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update POKEMONS set Activo = 1 where Id = @id");
+                datos.setearParametros("@id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConeccion();
+            }
+        }
+
+
         public List<Pokemon> listarConSP()
         {
             List<Pokemon> list = new List<Pokemon>();
@@ -208,6 +229,7 @@ namespace negocio
                     aux.Debilidad = new Elemento();
                     aux.Debilidad.Id = (int)datos.Lector["IdDebilidad"];
                     aux.Debilidad.Descripcion = (string)datos.Lector["Debilidad"];
+                    aux.Activo = (bool)datos.Lector["Activo"];
 
                     list.Add(aux);
                 }

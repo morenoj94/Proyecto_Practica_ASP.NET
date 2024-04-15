@@ -12,11 +12,12 @@ namespace Pokedex_Web
     public partial class Formulario : System.Web.UI.Page
     {
         public bool ConfirmarEliminar { get; set; }
+        public bool Activo { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             txtId.Enabled = false;
             ConfirmarEliminar = false;
-
+            Activo = true;
 
             try
             {
@@ -41,7 +42,7 @@ namespace Pokedex_Web
                 //carga si viene un id por url
 
                 if (!(Request.QueryString["id"] == null) && !IsPostBack)// agregamos la coondicion si es postback
-                {
+                {                    
                     int id = int.Parse(Request.QueryString["id"]);
                     PokemonNegocio negocio = new PokemonNegocio();
                     //List<Pokemon> lista = negocio.listarConSP();
@@ -57,6 +58,15 @@ namespace Pokedex_Web
 
                     ddlTipo.SelectedValue = seleccionado.Tipo.Id.ToString();
                     ddlDebilidad.SelectedValue = seleccionado.Debilidad.Id.ToString();
+
+                    if (seleccionado.Activo)
+                    {
+                        Activo = true;
+                    }
+                    else 
+                    {
+                        Activo=false;
+                    }
 
                     btnAceptar.Text = "Modificar";
 
@@ -138,6 +148,37 @@ namespace Pokedex_Web
                     negocio.eliminarLogico(int.Parse(txtId.Text));
                     Response.Redirect("ListaPokemon.aspx", false);
                 }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw;
+                //redireccion a pantalla de error
+            }
+        }
+
+        protected void cbxConfirmareliminar_CheckedChanged(object sender, EventArgs e)
+        {
+            ConfirmarEliminar = true;
+            if (cbxConfirmareliminar.Checked)
+            {
+                btnConfirmarEliminar.CssClass = "btn btn-outline-danger";
+                btnConfirmarEliminar.Text = "Eliminar";
+            }
+            else 
+            {
+                btnConfirmarEliminar.CssClass = "btn btn-outline-warning";
+                btnConfirmarEliminar.Text = "Inactivar";
+            }
+        }
+
+        protected void btnActivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PokemonNegocio negocio = new PokemonNegocio();
+                negocio.activarPokemon(int.Parse(txtId.Text));
+                Response.Redirect("ListaPokemon.aspx", false);
             }
             catch (Exception ex)
             {

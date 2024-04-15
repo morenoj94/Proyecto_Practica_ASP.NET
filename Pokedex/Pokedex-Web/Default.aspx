@@ -33,6 +33,7 @@
                 <div class="col">
                     <div class="card h-100">
                         <a href="Formulario.aspx?id=<%#Eval("Id") %>">
+                            <button></button>
                         <img src="<%#Eval("UrlImagen") %>"  class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
