@@ -15,6 +15,15 @@ namespace Pokedex_Web
     {
 
         /// <summary>
+        /// txtFiltro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFiltro;
+
+        /// <summary>
         /// btnListaTotal control.
         /// </summary>
         /// <remarks>
@@ -22,15 +31,6 @@ namespace Pokedex_Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnListaTotal;
-
-        /// <summary>
-        /// btnListaDesactivada control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnListaDesactivada;
 
         /// <summary>
         /// btnListaActivada control.

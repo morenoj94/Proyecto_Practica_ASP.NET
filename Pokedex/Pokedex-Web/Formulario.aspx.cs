@@ -17,7 +17,7 @@ namespace Pokedex_Web
         {
             txtId.Enabled = false;
             ConfirmarEliminar = false;
-            Activo = true;
+            //Activo = true;
 
             try
             {
@@ -42,7 +42,7 @@ namespace Pokedex_Web
                 //carga si viene un id por url
 
                 if (!(Request.QueryString["id"] == null) && !IsPostBack)// agregamos la coondicion si es postback
-                {                    
+                {
                     int id = int.Parse(Request.QueryString["id"]);
                     PokemonNegocio negocio = new PokemonNegocio();
                     //List<Pokemon> lista = negocio.listarConSP();
@@ -63,9 +63,11 @@ namespace Pokedex_Web
                     {
                         Activo = true;
                     }
-                    else 
+                    else
                     {
-                        Activo=false;
+                        Activo = false;
+                        btnEliminar.Text = "Activar";
+                        btnEliminar.CssClass = "btn btn-success";
                     }
 
                     btnAceptar.Text = "Modificar";
@@ -127,7 +129,22 @@ namespace Pokedex_Web
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (Request.QueryString["id"] != null)
+            if (btnEliminar.Text == "Activar")
+            {
+                try
+                {
+                    PokemonNegocio negocio = new PokemonNegocio();
+                    negocio.activarPokemon(int.Parse(txtId.Text));
+                    Response.Redirect("ListaPokemon.aspx", false);
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex);
+                    throw;
+                    //redireccion a pantalla de error
+                }
+            }
+            else
             {
                 ConfirmarEliminar = true;
             }
@@ -165,7 +182,7 @@ namespace Pokedex_Web
                 btnConfirmarEliminar.CssClass = "btn btn-outline-danger";
                 btnConfirmarEliminar.Text = "Eliminar";
             }
-            else 
+            else
             {
                 btnConfirmarEliminar.CssClass = "btn btn-outline-warning";
                 btnConfirmarEliminar.Text = "Inactivar";

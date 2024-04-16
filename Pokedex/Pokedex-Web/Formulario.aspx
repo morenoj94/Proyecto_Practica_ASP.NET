@@ -12,14 +12,14 @@
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
                     <asp:Button ID="btnAceptar" CssClass="btn btn-dark" Text="Aceptar" OnClick="btnAceptar_Click" runat="server" />
-                    <%if (Activo==true)
-                       {%>
                     <asp:Button ID="btnEliminar" CssClass="btn btn-danger" Text="Eliminar" OnClick="btnEliminar_Click" runat="server" />
+                   <%-- <%if (Activo==true)
+                       {%>
                     <%} %>
                     <%else if(Activo==false)
                       {%>
                     <asp:Button ID="btnActivar" CssClass="btn btn-success" Text="Activar" OnClick="btnActivar_Click" runat="server" />
-                    <%} %>
+                    <%} %>--%>
 
                     <%if (ConfirmarEliminar)
                         {%>

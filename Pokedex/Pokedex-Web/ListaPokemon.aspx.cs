@@ -16,8 +16,8 @@ namespace Pokedex_Web
 
 
             cargarGrilla();
-            btnListaActivada.Visible = false;
-            btnListaTotal.Visible = true;
+            btnListaActivada.Visible = true;
+            btnListaTotal.Visible = false;
             btnListaDesactivada.Visible = true;
 
 
@@ -62,14 +62,21 @@ namespace Pokedex_Web
         public void cargarGrilla()
         {
             PokemonNegocio negocio = new PokemonNegocio();
-            dgvListaPokemon.DataSource = negocio.listarConSP();
+            Session.Add("listPokemon", negocio.listarConSP());
+            dgvListaPokemon.DataSource = Session["listPokemon"];
             dgvListaPokemon.DataBind();
         }
         public void cargarGrilla(bool activo)
         {
-            PokemonNegocio negocio = new PokemonNegocio();
-            List<Pokemon> listPokemon = (negocio.listarConSP()).FindAll(x => x.Activo = activo);
+            List<Pokemon> listPokemon = ((List<Pokemon>)Session["listPokemon"]).FindAll(x => x.Activo = activo);
             dgvListaPokemon.DataSource = listPokemon;
+            dgvListaPokemon.DataBind();
+        }
+
+        protected void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            List<Pokemon> listFiltrada = ((List<Pokemon>)Session["listPokemon"]).FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            dgvListaPokemon.DataSource= listFiltrada;
             dgvListaPokemon.DataBind();
         }
     }

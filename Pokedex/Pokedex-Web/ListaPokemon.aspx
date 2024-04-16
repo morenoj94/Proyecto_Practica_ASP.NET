@@ -5,7 +5,17 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Lista de pokemons</h1>
 
-    
+
+    <div class="row">
+        <div class="col-4">
+
+            <div class="mb-2">
+                <label for="txtFiltro" class="form-label">Filtro rapido</label>
+                <asp:TextBox ID="txtFiltro" runat="server" OnTextChanged="txtFiltro_TextChanged" AutoPostBack="true" CssClass="form-control" />
+            </div>
+        </div>
+    </div>
+
     <asp:Button ID="btnListaTotal" CssClass="btn btn-dark" Text="Todos los Pokemons" OnClick="btnListaTotal_Click" runat="server" />
     <asp:Button ID="btnListaDesactivada" CssClass="btn btn-dark" Text="Pokemons Desactivados" OnClick="btnListaDesactivada_Click" runat="server" />
     <asp:Button ID="btnListaActivada" CssClass="btn btn-dark" Text="Pokemons activos" OnClick="btnListaActivada_Click" runat="server" />
