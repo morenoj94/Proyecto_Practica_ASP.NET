@@ -18,7 +18,7 @@ namespace Pokedex_Web
             cargarGrilla();
             btnListaActivada.Visible = true;
             btnListaTotal.Visible = false;
-            btnListaDesactivada.Visible = true;
+            //btnListaDesactivada.Visible = true;
 
 
         }
@@ -38,24 +38,24 @@ namespace Pokedex_Web
         protected void btnListaTotal_Click(object sender, EventArgs e)
         {
             btnListaTotal.Visible = false;
-            btnListaDesactivada.Visible = true;
+            //btnListaDesactivada.Visible = true;
             btnListaActivada.Visible = true;
             cargarGrilla();
         }
 
-        protected void btnListaDesactivada_Click(object sender, EventArgs e)
-        {
-            btnListaDesactivada.Visible = false;
-            btnListaTotal.Visible = true;
-            btnListaActivada.Visible = true;
-            cargarGrilla(false);
-        }
+        //protected void btnListaDesactivada_Click(object sender, EventArgs e)
+        //{
+        //    btnListaDesactivada.Visible = false;
+        //    btnListaTotal.Visible = true;
+        //    btnListaActivada.Visible = true;
+        //    cargarGrilla(false);
+        //}
 
         protected void btnListaActivada_Click(object sender, EventArgs e)
         {
             btnListaActivada.Visible = false;
             btnListaTotal.Visible = true;
-            btnListaDesactivada.Visible = true;
+            //btnListaDesactivada.Visible = true;
             cargarGrilla(true);
         }
 
@@ -78,6 +78,11 @@ namespace Pokedex_Web
             List<Pokemon> listFiltrada = ((List<Pokemon>)Session["listPokemon"]).FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
             dgvListaPokemon.DataSource= listFiltrada;
             dgvListaPokemon.DataBind();
+        }
+
+        protected void cbxFiltroAvanzado_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
