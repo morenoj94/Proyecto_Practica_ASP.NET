@@ -116,33 +116,6 @@ namespace negocio
                 datos.cerrarConeccion();
             }
         }
-        public void modificarPokemonConSP(Pokemon poke)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                //datos.setearConsulta("update POKEMONS set Numero = @Numero, Nombre = @Nombre, Descripcion = @Descripcion, UrlImagen = @UrlImagen, IdTipo = @IdTipo, IdDebilidad = @IdDebilidad ");
-                datos.setearProcedimiento("storeModificarPokemon");
-                datos.setearParametros("@id", poke.Id);
-                datos.setearParametros("@numero", poke.Numero);
-                datos.setearParametros("@nombre", poke.Nombre);
-                datos.setearParametros("@desc", poke.Descripcion);
-                datos.setearParametros("@url", poke.UrlImagen);
-                datos.setearParametros("@idTipo", poke.Tipo.Id);
-                datos.setearParametros("@idDebilidad", poke.Debilidad.Id);
-
-                datos.ejecutarAccion();
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConeccion();
-            }
-        }
 
         public void eliminarPokemon(int id)
         {
@@ -272,6 +245,33 @@ namespace negocio
                 datos.cerrarConeccion();
             }
 
+        }
+        public void modificarPokemonConSP(Pokemon poke)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                //datos.setearConsulta("update POKEMONS set Numero = @Numero, Nombre = @Nombre, Descripcion = @Descripcion, UrlImagen = @UrlImagen, IdTipo = @IdTipo, IdDebilidad = @IdDebilidad ");
+                datos.setearProcedimiento("storeModificarPokemon");
+                datos.setearParametros("@id", poke.Id);
+                datos.setearParametros("@numero", poke.Numero);
+                datos.setearParametros("@nombre", poke.Nombre);
+                datos.setearParametros("@desc", poke.Descripcion);
+                datos.setearParametros("@url", poke.UrlImagen);
+                datos.setearParametros("@idTipo", poke.Tipo.Id);
+                datos.setearParametros("@idDebilidad", poke.Debilidad.Id);
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConeccion();
+            }
         }
 
 
