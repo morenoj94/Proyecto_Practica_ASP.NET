@@ -249,12 +249,12 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                
+
                 datos.setearProcedimiento("storeCrearPokemon");
                 datos.setearParametros("@numero", poke.Numero);
                 datos.setearParametros("@nombre", poke.Nombre);
                 datos.setearParametros("@desc", poke.Descripcion);
-                datos.setearParametros("@url", poke.UrlImagen);               
+                datos.setearParametros("@url", poke.UrlImagen);
                 datos.setearParametros("@idTipo", poke.Tipo.Id);
                 datos.setearParametros("@idDebilidad", poke.Debilidad.Id);
                 //datos.setearParametros("@idEvolucion", null);
@@ -275,7 +275,7 @@ namespace negocio
         }
 
 
-        public List<Pokemon> filtrar(string campo, string criterio, string filtro)
+        public List<Pokemon> filtrar(string campo, string criterio, string filtro, string estado)
         {
             List<Pokemon> lista = new List<Pokemon>();
             AccesoDatos datos = new AccesoDatos();
@@ -301,10 +301,10 @@ namespace negocio
                     case "Nombre":
                         switch (criterio)
                         {
-                            case "Que inicie con":
+                            case "Comienza con":
                                 condicion = $"Nombre like '{filtro}%'";
                                 break;
-                            case "Que termine con":
+                            case "Termina con":
                                 condicion = $"Nombre like '%{filtro}'";
                                 break;
                             default:
@@ -316,18 +316,26 @@ namespace negocio
                         switch (criterio)
                         {
                             case "Que inicie con":
-                                condicion = $"p.Descripcion like '{filtro}%'";
+                                condicion = $"E.Descripcion like '{filtro}%'";
                                 break;
                             case "Que termine con":
-                                condicion = $"p.Descripcion like '%{filtro}'";
+                                condicion = $"E.Descripcion like '%{filtro}'";
                                 break;
                             default:
-                                condicion = $"p.Descripcion like '%{filtro}%'";
+                                condicion = $"E.Descripcion like '%{filtro}%'";
                                 break;
                         }
                         break;
                 }
-                string consulta = $@"select Numero, Nombre, p.Descripcion, UrlImagen, e.Descripcion as Tipo, IdTipo, d.Descripcion as Debilidad, IdDebilidad, p.Id from POKEMONS P, ELEMENTOS E, ELEMENTOS D where p.IdTipo = e.Id and p.IdDebilidad = d.Id and Activo = 1 and {condicion} order by Numero asc";
+                if (estado == "Activos")
+                {
+                    condicion += " and P.Activo = 1";
+                }
+                else if (estado== "Inactivos")
+                {
+                    condicion += " and P.Activo = 0";
+                }
+                string consulta = $@"select Numero, Nombre, p.Descripcion, UrlImagen, e.Descripcion as Tipo, IdTipo, d.Descripcion as Debilidad, IdDebilidad, P.Id, P.Activo from POKEMONS P, ELEMENTOS E, ELEMENTOS D where p.IdTipo = e.Id and p.IdDebilidad = d.Id and {condicion} order by Numero asc";
                 datos.setearConsulta(consulta);
 
                 datos.ejecutarLectura();
@@ -347,6 +355,7 @@ namespace negocio
                     aux.Debilidad = new Elemento();
                     aux.Debilidad.Id = (int)datos.Lector["IdDebilidad"];
                     aux.Debilidad.Descripcion = (string)datos.Lector["Debilidad"];
+                    aux.Activo = (bool)datos.Lector["Activo"];
 
 
                     lista.Add(aux);

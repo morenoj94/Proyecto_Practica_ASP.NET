@@ -41,6 +41,7 @@
                             <asp:ListItem Text="Nombre" />
                             <asp:ListItem Text="Tipo" />
                             <asp:ListItem Text="Numero" />
+                            <asp:ListItem Text="" />
                         </asp:DropDownList>
                     </div>
                 </div>
@@ -49,7 +50,7 @@
                 <div class="col-3">
                     <div class="mb-2">
                         <label for="ddlCriterio" class="form-label">Criterio</label>
-                        <asp:DropDownList ID="ddlCriterio" OnSelectedIndexChanged="ddlCriterio_SelectedIndexChanged" CssClass="form-select" runat="server">                            
+                        <asp:DropDownList ID="ddlCriterio" CssClass="form-select" runat="server">                            
                         </asp:DropDownList>
                     </div>
                 </div>
@@ -79,7 +80,7 @@
             <div class="row">
                 <div class="col-3">
                     <div class="mb-2">
-                        <asp:Button ID="btnFiltrar" Text="Filtrar" CssClass="btn btn-dark" runat="server" />
+                        <asp:Button ID="btnFiltrar" Text="Filtrar" CssClass="btn btn-dark" OnClick="btnFiltrar_Click" runat="server" />
                     </div>
                 </div>
             </div>

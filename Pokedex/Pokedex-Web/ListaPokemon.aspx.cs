@@ -82,17 +82,15 @@ namespace Pokedex_Web
 
         protected void cbxFiltroAvanzado_CheckedChanged(object sender, EventArgs e)
         {
+            ddlCampo.SelectedValue = "";
             txtFiltro.Enabled = !cbxFiltroAvanzado.Checked;
-        }
-
-        protected void ddlCriterio_SelectedIndexChanged(object sender, EventArgs e)
-        {
         }
 
         protected void ddlCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
             ddlCriterio.Items.Clear();
-            if (ddlCampo.SelectedIndex.ToString()== "Numero")
+            
+            if (ddlCampo.SelectedValue.ToString() == "Numero")
             {
                 ddlCriterio.Items.Add("Menor que");
                 ddlCriterio.Items.Add("Igual a");
@@ -105,6 +103,15 @@ namespace Pokedex_Web
                 ddlCriterio.Items.Add("Termina con");
             }
 
+        }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            PokemonNegocio negocio = new PokemonNegocio();
+            dgvListaPokemon.DataSource = negocio.filtrar(ddlCampo.SelectedValue,
+                ddlCriterio.SelectedValue, txtFiltroavanzado.Text,
+                ddlEstado.SelectedValue);
+            dgvListaPokemon.DataBind();
         }
     }
 }
