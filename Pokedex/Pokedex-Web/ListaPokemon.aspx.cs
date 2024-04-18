@@ -16,8 +16,8 @@ namespace Pokedex_Web
 
 
             cargarGrilla();
-            btnListaActivada.Visible = true;
-            btnListaTotal.Visible = false;
+            //btnListaActivada.Visible = true;
+            //btnListaTotal.Visible = false;
             //btnListaDesactivada.Visible = true;
 
 
@@ -35,13 +35,13 @@ namespace Pokedex_Web
             dgvListaPokemon.DataBind();
         }
 
-        protected void btnListaTotal_Click(object sender, EventArgs e)
-        {
-            btnListaTotal.Visible = false;
-            //btnListaDesactivada.Visible = true;
-            btnListaActivada.Visible = true;
-            cargarGrilla();
-        }
+        //protected void btnListaTotal_Click(object sender, EventArgs e)
+        //{
+        //    btnListaTotal.Visible = false;
+        //    //btnListaDesactivada.Visible = true;
+        //    btnListaActivada.Visible = true;
+        //    cargarGrilla();
+        //}
 
         //protected void btnListaDesactivada_Click(object sender, EventArgs e)
         //{
@@ -51,13 +51,13 @@ namespace Pokedex_Web
         //    cargarGrilla(false);
         //}
 
-        protected void btnListaActivada_Click(object sender, EventArgs e)
-        {
-            btnListaActivada.Visible = false;
-            btnListaTotal.Visible = true;
-            //btnListaDesactivada.Visible = true;
-            cargarGrilla(true);
-        }
+        //protected void btnListaActivada_Click(object sender, EventArgs e)
+        //{
+        //    btnListaActivada.Visible = false;
+        //    btnListaTotal.Visible = true;
+        //    //btnListaDesactivada.Visible = true;
+        //    cargarGrilla(true);
+        //}
 
         public void cargarGrilla()
         {
@@ -82,6 +82,28 @@ namespace Pokedex_Web
 
         protected void cbxFiltroAvanzado_CheckedChanged(object sender, EventArgs e)
         {
+            txtFiltro.Enabled = !cbxFiltroAvanzado.Checked;
+        }
+
+        protected void ddlCriterio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        protected void ddlCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlCriterio.Items.Clear();
+            if (ddlCampo.SelectedIndex.ToString()== "Numero")
+            {
+                ddlCriterio.Items.Add("Menor que");
+                ddlCriterio.Items.Add("Igual a");
+                ddlCriterio.Items.Add("Mayor que");
+            }
+            else
+            {
+                ddlCriterio.Items.Add("Comienza con");
+                ddlCriterio.Items.Add("Contiene");
+                ddlCriterio.Items.Add("Termina con");
+            }
 
         }
     }

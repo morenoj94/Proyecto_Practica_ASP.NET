@@ -30,14 +30,14 @@
             </div>
 
             <%-- Campos para el filtro avanzado --%>
-            <%if (true)
+            <%if (cbxFiltroAvanzado.Checked)
             {%>
             <div class="row">
                 <%-- Control para el campo --%>
                 <div class="col-3">
                     <div class="mb-2">
                         <label for="ddlCampo" class="form-label">Campo</label>
-                        <asp:DropDownList ID="ddlCampo" CssClass="form-select" runat="server">
+                        <asp:DropDownList ID="ddlCampo" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged" AutoPostBack="true" CssClass="form-select" runat="server">
                             <asp:ListItem Text="Nombre" />
                             <asp:ListItem Text="Tipo" />
                             <asp:ListItem Text="Numero" />
@@ -49,7 +49,7 @@
                 <div class="col-3">
                     <div class="mb-2">
                         <label for="ddlCriterio" class="form-label">Criterio</label>
-                        <asp:DropDownList ID="ddlCriterio" CssClass="form-select" runat="server">                            
+                        <asp:DropDownList ID="ddlCriterio" OnSelectedIndexChanged="ddlCriterio_SelectedIndexChanged" CssClass="form-select" runat="server">                            
                         </asp:DropDownList>
                     </div>
                 </div>
@@ -76,14 +76,21 @@
                 </div>
 
             </div>
+            <div class="row">
+                <div class="col-3">
+                    <div class="mb-2">
+                        <asp:Button ID="btnFiltrar" Text="Filtrar" CssClass="btn btn-dark" runat="server" />
+                    </div>
+                </div>
+            </div>
             <%} %>
 
 
 
-            <%-- Botones para mostrar la lista entrera o solo elementos activos --%>
-            <asp:Button ID="btnListaTotal" CssClass="btn btn-dark" Text="Todos los Pokemons" OnClick="btnListaTotal_Click" runat="server" />
+           <%-- Botones para mostrar la lista entrera o solo elementos activos --%>
+            <%--<asp:Button ID="btnListaTotal" CssClass="btn btn-dark" Text="Todos los Pokemons" OnClick="btnListaTotal_Click" runat="server" />--%>
             <%--<asp:Button ID="btnListaDesactivada" CssClass="btn btn-dark" Text="Pokemons Desactivados" OnClick="btnListaDesactivada_Click" runat="server" />--%>
-            <asp:Button ID="btnListaActivada" CssClass="btn btn-dark" Text="Pokemons activos" OnClick="btnListaActivada_Click" runat="server" />
+            <%--<asp:Button ID="btnListaActivada" CssClass="btn btn-dark" Text="Pokemons activos" OnClick="btnListaActivada_Click" runat="server" />--%>
 
 
             <asp:GridView ID="dgvListaPokemon" CssClass="table table-striped table-bordered"
