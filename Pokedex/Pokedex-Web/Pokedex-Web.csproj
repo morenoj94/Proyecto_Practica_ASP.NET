@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CatalogoPokemon.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -83,6 +84,7 @@
     <Content Include="Formulario.aspx" />
     <Content Include="ListaPokemon.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -114,6 +116,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogoPokemon.aspx.cs">
+      <DependentUpon>CatalogoPokemon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CatalogoPokemon.aspx.designer.cs">
+      <DependentUpon>CatalogoPokemon.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Formulario.aspx.cs">
       <DependentUpon>Formulario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -127,6 +136,13 @@
     </Compile>
     <Compile Include="ListaPokemon.aspx.designer.cs">
       <DependentUpon>ListaPokemon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>

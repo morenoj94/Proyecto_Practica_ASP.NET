@@ -6,7 +6,23 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    internal class Usuario
+    public enum TipoUsuario 
     {
+        NORMAL = 1,
+        ADMIN = 2
+    }
+    public class Usuario
+    {
+        public int Id { get; set; }
+        public string User { get; set; }
+        public string Pass { get; set; }
+        public TipoUsuario TipoUsuario { get; set; }
+
+        public Usuario(string user, string pass) 
+        {
+            User = user;
+            Pass = pass;  
+        }
+
     }
 }
