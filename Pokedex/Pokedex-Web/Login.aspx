@@ -16,7 +16,7 @@
                 <label for="txtPassword" class="form-label">Password</label>
                 <asp:TextBox ID="txtPassword" CssClass="form-control" TextMode="Password" runat="server" />
             </div>
-            <asp:Button ID="btnAceptar" CssClass="btn btn-primary" Text="Aceptar" runat="server" />
+            <asp:Button ID="btnAceptar" CssClass="btn btn-primary" Text="Aceptar" OnClick="btnAceptar_Click" runat="server" />
 
         </div>
     </div>

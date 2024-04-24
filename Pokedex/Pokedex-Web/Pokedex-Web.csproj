@@ -81,6 +81,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Error.aspx" />
     <Content Include="Formulario.aspx" />
     <Content Include="ListaPokemon.aspx" />
     <Content Include="Default.aspx" />
@@ -122,6 +123,13 @@
     </Compile>
     <Compile Include="CatalogoPokemon.aspx.designer.cs">
       <DependentUpon>CatalogoPokemon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="Formulario.aspx.cs">
       <DependentUpon>Formulario.aspx</DependentUpon>

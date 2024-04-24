@@ -13,7 +13,19 @@ namespace Pokedex_Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            if (Session["usuario"] != null)
+            {
+                Usuario usuario = (Usuario)Session["usuario"];
+                string user = usuario.User;
+                lblIngreste.Text = $"{user}... Ingresaste exitosamente";
+            }
+
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Remove("usuario");
+            Response.Redirect("Default.aspx", false);
         }
     }
 }
