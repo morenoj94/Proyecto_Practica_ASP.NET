@@ -15,6 +15,11 @@ namespace Pokedex_Web
         {
 
 
+            if (Session["usuario"]==null)
+            {
+                Session.Add("error", "Para poder ver los pokemos en formato lista debes iniciar session. \nVe a la ventana home y desde alli presiona el boton login");
+                Response.Redirect("Error.aspx", false);
+            }
             cargarGrilla();
             //btnListaActivada.Visible = true;
             btnListaTotal.Visible = false;
@@ -25,8 +30,17 @@ namespace Pokedex_Web
 
         protected void dgvListaPokemon_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string id = dgvListaPokemon.SelectedDataKey.Value.ToString();
-            Response.Redirect($"Formulario.aspx?id={id}");
+            if (((Usuario)Session["usuario"]).TipoUsuario == TipoUsuario.ADMIN)
+            {
+                string id = dgvListaPokemon.SelectedDataKey.Value.ToString();
+                Response.Redirect($"Formulario.aspx?id={id}");
+            }
+            else
+            {
+                Session.Add("error", "Maquina tienes que iniciar session como admin para poder modificar un pokemon");
+                Response.Redirect("Error.aspx", false);
+            }
+            
         }
 
         protected void dgvListaPokemon_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -40,7 +54,7 @@ namespace Pokedex_Web
             btnListaTotal.Visible = false;
             btnListaDesactivada.Visible = true;
             btnListaActivada.Visible = true;
-            
+
         }
 
         protected void btnListaDesactivada_Click(object sender, EventArgs e)
@@ -71,7 +85,7 @@ namespace Pokedex_Web
             try
             {
                 PokemonNegocio negocio = new PokemonNegocio();
-                dgvListaPokemon.DataSource = negocio.filtrar("","","", "Activos");
+                dgvListaPokemon.DataSource = negocio.filtrar("", "", "", "Activos");
                 dgvListaPokemon.DataBind();
             }
             catch (Exception ex)

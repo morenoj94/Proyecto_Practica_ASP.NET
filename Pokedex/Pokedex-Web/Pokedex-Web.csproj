@@ -124,6 +124,7 @@
     <Compile Include="CatalogoPokemon.aspx.designer.cs">
       <DependentUpon>CatalogoPokemon.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Consulta.cs" />
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

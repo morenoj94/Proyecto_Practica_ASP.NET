@@ -26,6 +26,7 @@ namespace Pokedex_Web
         {
             Session.Remove("usuario");
             Response.Redirect("Default.aspx", false);
+            
         }
     }
 }

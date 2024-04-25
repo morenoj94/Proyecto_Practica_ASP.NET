@@ -11,9 +11,14 @@ namespace Pokedex_Web
 {
     public partial class Login : System.Web.UI.Page
     {
+        public Usuario usuarioIniciado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["usuario"] != null)
+            {
+                lblIngresaste.Text = "Maquina ya abriste session, no hace falta que hagas loging. si te cansaste entonces tienes que hacer logout";
+            }
+            
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
@@ -26,6 +31,7 @@ namespace Pokedex_Web
                 if (negocio.Login(usuario))
                 {
                     Session.Add("usuario", usuario);
+                    usuarioIniciado = usuario;
                     Response.Redirect("Default.aspx", false);
                 }
                 else
@@ -41,6 +47,12 @@ namespace Pokedex_Web
                 Session.Add("error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Remove("usuario");
+            Response.Redirect("Default.aspx", false);
         }
     }
 }

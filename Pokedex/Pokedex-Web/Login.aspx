@@ -5,6 +5,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
 
+    <%if (Session["usuario"] == null)
+        {%>
     <div class="row">
         <div class="col-5">
 
@@ -20,4 +22,11 @@
 
         </div>
     </div>
+    <%}
+        else
+        {%>
+    <asp:Label ID="lblIngresaste" Text="" runat="server" />
+    <asp:Button ID="btnLogout" Text="Logout" OnClick="btnLogout_Click" runat="server" />
+
+    <%} %>
 </asp:Content>

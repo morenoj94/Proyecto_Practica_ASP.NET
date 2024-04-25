@@ -43,11 +43,14 @@
                         </div>
                         <div class="card-footer">
                             <small class="text-body-secondary">
-                                <asp:Button ID="btnEjemplo" CssClass="btn btn-primary" 
-                                    Text="Ver detalle" runat="server" 
-                                    CommandArgument='<%#Eval("Id") %>' CommandName="pokemonId" 
+                                <%if (Session["usuario"] != null)
+                                    {%>
+                                <asp:Button ID="btnEjemplo" CssClass="btn btn-primary"
+                                    Text="Ver detalle" runat="server"
+                                    CommandArgument='<%#Eval("Id") %>' CommandName="pokemonId"
                                     OnClick="btnEjemplo_Click" />
                                 <%-- en este boton el command argumente se usa con comillas simples '' --%>
+                                <%} %>
                             </small>
                         </div>
                     </div>

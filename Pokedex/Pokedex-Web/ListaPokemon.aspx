@@ -9,6 +9,7 @@
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
 
+
             <%-- Filtro simple y check de filtro avanzado --%>
             <div class="row">
                 <%-- Filtro simple --%>
@@ -101,7 +102,10 @@
             </asp:GridView>
         </ContentTemplate>
     </asp:UpdatePanel>
+    <%if (Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).TipoUsuario == dominio.TipoUsuario.ADMIN)
+        {%>
     <a href="Formulario.aspx" class="btn btn-dark">Agregar</a>
+    <%} %>
 
 
     <%-- Botones para mostrar la lista entrera o solo elementos activos --%>
