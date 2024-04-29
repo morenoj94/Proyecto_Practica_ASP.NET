@@ -25,8 +25,10 @@
     <%}
         else
         {%>
-    <asp:Label ID="lblIngresaste" Text="" runat="server" />
-    <asp:Button ID="btnLogout" Text="Logout" OnClick="btnLogout_Click" runat="server" />
+    <div class="mb-3">
+        <h5> <asp:Label ID="lblIngresaste" Text="" runat="server" /> </h5>
+    </div>
+    <asp:Button ID="btnLogout" Text="Logout" CssClass="btn btn-primary" OnClick="btnLogout_Click" runat="server" />
 
     <%} %>
 </asp:Content>

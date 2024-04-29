@@ -18,7 +18,7 @@ namespace Pokedex_Web
             {
                 lblIngresaste.Text = "Maquina ya abriste session, no hace falta que hagas loging. si te cansaste entonces tienes que hacer logout";
             }
-            
+
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
@@ -52,7 +52,11 @@ namespace Pokedex_Web
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             Session.Remove("usuario");
-            Response.Redirect("Default.aspx", false);
+            //agregamos un msj de que cerraste session
+            string script = "alert('cerraste sesion');";
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "mensaje", script, true);
+            
+            //Response.Redirect("Default.aspx", false);
         }
     }
 }

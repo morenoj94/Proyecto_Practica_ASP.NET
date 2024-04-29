@@ -7,15 +7,16 @@ using System.Web.UI.WebControls;
 
 namespace Pokedex_Web
 {
-    public partial class Master : System.Web.UI.MasterPage
+    public partial class Registro : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"]!=null)
-            {
-                btnlogin.Text = "Logout";
-                btnlogin.CssClass = "btn btn-danger";
-            }
+
+        }
+
+        protected void btnRegistrarse_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

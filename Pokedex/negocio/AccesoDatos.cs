@@ -83,7 +83,7 @@ namespace negocio
             comando.Parameters.AddWithValue(nombre, valor);
         }
 
-        public void cerrarConeccion() 
+        public void cerrarConexion() 
         {
             if (lector != null)
             {
